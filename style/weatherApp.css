@@ -1,0 +1,5 @@
+.mainContainer{}
+#mainContainer .headerContainer{padding-top: 10px;padding-bottom: 10px;}
+.forecast-tab-content{overflow-y: auto;height: 400px;}
+.panel-heading {padding-top:0px;padding-bottom:0px;}
+.panel-heading h4{color:#000000}

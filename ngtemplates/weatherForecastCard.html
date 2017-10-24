@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0" heading="Hourly">
+          <div class="table-responsive forecast-tab-content">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Forecast</th>
+                  <th>Temp</th>
+                  <th>Wind</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <tr ng-repeat="hourlyData in weatherData.forecast.hourly">
+                    <th scope="row">{{hourlyData.timestamp * 1000 | date: configuration.dateTimeFormat }}</th>
+                    <td>{{hourlyData.condition}}<img ng-src="{{hourlyData.iconURI}}.png"/></td>
+                    <td>{{convertTemperatures(hourlyData.temp.average)}}</td>
+                    <td>{{windSpeed(hourlyData.wind.speed)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Daily">
+          <div class="forecast-tab-content">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Forecast</th>
+                  <th>Temp</th>
+                  <th>Wind</th>
+                </tr> </thead>
+                <tbody>
+                  <tr ng-repeat="dailyData in weatherData.forecast.daily | orderBy: 'timestamp'">
+                    <th scope="row">{{dailyData.timestamp * 1000 | date: configuration.dateFormat }}</th>
+                    <td>{{dailyData.condition}}<img ng-src="{{dailyData.iconURI}}.png"/></td>
+                    <td>{{convertTemperatures(dailyData.temp.average,configuration.temperatureScale)}}</td>
+                    <td>{{windSpeed(dailyData.wind.speed,configuration.temperatureScale)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+    <div class="col-md-2"></div>
+</div>

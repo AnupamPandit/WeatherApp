@@ -1,0 +1,27 @@
+<div class="container headerContainer">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <input type="text"
+      ng-model="ctrl.citySearchString"
+      uib-typeahead="location as location.city_name for location in ctrl.locations | filter:{city_name:$viewValue}"
+      placeholder="Search City here..."
+       ng-change="ctrl.getMatchingCity();"
+       ng-model="selected"
+       typeahead-wait-ms=10
+       typeahead-on-select=""
+       typeahead-template-url=""
+      class="form-control">
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+          <label class="btn btn-default" ng-model="ctrl.defaultWeatherWidgetConfiguration.temperatureScale" uib-btn-radio="'CELSIUS'">C</label>
+          <label class="btn btn-default" ng-model="ctrl.defaultWeatherWidgetConfiguration.temperatureScale" uib-btn-radio="'FAHRENHEIT'">F</label>
+      </div>
+      <button type="button" class="btn btn-default" ng-model="ctrl.autoRefresh" ng-model="ctrl.toggleAutoRefresh()" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+        Auto Refresh
+      </button>
+    </div>
+  </div>
+</div>

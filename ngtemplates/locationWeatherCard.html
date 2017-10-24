@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-9">
+            <h4>{{city}} <small>{{country}}</small>
+              {{convertTemperatures(weatherData.temp.average,configuration.temperatureScale)}}
+              <img title="{{weatherData.condition}}" ng-src="{{weatherData.iconURI}}.png"/>
+            </h4>
+          </div>
+          <div class="col-md-3">
+            <h4><small>{{weatherData.timestamp * 1000 | date:'medium'}}</small>
+              <button title="Refresh" ng-click="refreshCurrentWeather()" class="glyphicon glyphicon-refresh btn btn-link"></button>
+            </h4>
+          </div>
+        </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="table-responsive"  ng-include="'ngtemplates/temperatureDataCard.html'"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="table-responsive" ng-include="'ngtemplates/windDataCard.html'"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="table-responsive" ng-include="'ngtemplates/astroDataCard.html'"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <button ng-click="showForecastWeatherDetails()" class="btn btn-link">View Forecast</button>
+          <span ng-if="!showForecast" ng-click="showForecastWeatherDetails()" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <span ng-if="showForecast" ng-click="showForecastWeatherDetails()" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div ng-show="showForecast">
+        <div ng-include="'ngtemplates/weatherForecastCard.html'"></div>
+      </div>
+    </div>
+  </div>
+</div>
